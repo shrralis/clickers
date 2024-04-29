@@ -5,6 +5,7 @@ FROM --platform=linux/arm64 alpine AS builder
 WORKDIR /clickers
 
 RUN apk add --no-cache --update bash git python3
+RUN build-base python3-dev
 
 SHELL ["/bin/bash", "-c"]
 
