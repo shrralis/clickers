@@ -1,6 +1,8 @@
 # ### BUILD MAIN IMAGE START ###
 FROM --platform=$BUILDPLATFORM alpine
 
+ARG TARGETATCH
+ENV GOARCH=$TARGETARCH
 ENV PIP_BREAK_SYSTEM_PACKAGES 1
 
 RUN apk add --no-cache --update bash git python3 py3-pip sed util-linux-misc
