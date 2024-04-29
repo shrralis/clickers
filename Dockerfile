@@ -1,7 +1,9 @@
 # ### BUILD MAIN IMAGE START ###
 FROM alpine
 
-RUN apk add --no-cache --update bash git python3 sed util-linux-misc
+ENV PIP_BREAK_SYSTEM_PACKAGES 1
+
+RUN apk add --no-cache --update bash git python3 py3-pip sed util-linux-misc
 
 SHELL ["/bin/bash", "-c"]
 
