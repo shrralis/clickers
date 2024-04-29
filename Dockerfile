@@ -1,7 +1,7 @@
 # ### BUILD MAIN IMAGE START ###
 FROM alpine
 
-RUN apk add --update-cache --update bash build-base git python3 python3-dev sed util-linux-misc
+RUN apk add --no-cache --update bash git python3 sed util-linux-misc
 
 SHELL ["/bin/bash", "-c"]
 
@@ -33,5 +33,5 @@ VOLUME ["/MemeFiBot/sessions"]
 VOLUME ["/PocketFiBot/sessions"]
 VOLUME ["/TapSwapBot/sessions"]
 VOLUME ["/WormSlapBot/sessions"]
-ENTRYPOINT ["./start.sh"]
+ENTRYPOINT ["/bin/bash", "./start.sh"]
 ### BUILD MAIN IMAGE end ###
