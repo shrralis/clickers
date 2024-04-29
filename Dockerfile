@@ -1,46 +1,50 @@
-# ### BUILD MAIN IMAGE START ###
-FROM --platform=$BUILDPLATFORM alpine
+### BUILD CLICKERS MULTIARCH START ###
+FROM --platform=$BUILDPLATFORM alpine AS builder
 
-ARG TARGETATCH
-ENV GOARCH=$TARGETARCH
-ENV PIP_BREAK_SYSTEM_PACKAGES 1
+WORKDIR /clickers
 
-RUN apk add --no-cache --update bash git python3 py3-pip sed util-linux-misc
+RUN apk add --no-cache --update bash git python3
 
 SHELL ["/bin/bash", "-c"]
 
 # ## HamsterKombatBot setup ##
 RUN git clone https://github.com/shamhi/HamsterKombatBot.git
-#RUN cd HamsterKombatBot && python3 -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
-RUN cd HamsterKombatBot && pip3 install -r requirements.txt
+RUN cd HamsterKombatBot && python3 -m venv venv && . venv/bin/activate && pip3 install -r requirements.txt
 
 # ## MemeFiBot setup ##
 RUN git clone https://github.com/shamhi/MemeFiBot.git
-#RUN cd MemeFiBot && python3 -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
-RUN cd MemeFiBot && pip3 install -r requirements.txt
+RUN cd MemeFiBot && python3 -m venv venv && . venv/bin/activate && pip3 install -r requirements.txt
 
 # ## PocketFiBot setup ##
 RUN git clone https://github.com/shamhi/PocketFiBot.git
-#RUN cd PocketFiBot && python3 -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
-RUN cd PocketFiBot && pip3 install -r requirements.txt
+RUN cd PocketFiBot && python3 -m venv venv && . venv/bin/activate && pip3 install -r requirements.txt
 
 # ## TapSwapBot setup ##
 RUN git clone https://github.com/shamhi/TapSwapBot.git
-#RUN cd TapSwapBot && python3 -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
-RUN cd TapSwapBot && pip3 install -r requirements.txt
+RUN cd TapSwapBot && python3 -m venv venv && . venv/bin/activate && pip3 install -r requirements.txt
 
 # ## WormSlapBot setup ##
 RUN git clone https://github.com/shamhi/WormSlapBot.git
-#RUN cd WormSlapBot && python3 -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
-RUN cd WormSlapBot && pip3 install -r requirements.txt
+RUN cd WormSlapBot && python3 -m venv venv && . venv/bin/activate && pip3 install -r requirements.txt
+### BUILD CLICKERS MULTIARCH END ###
 
+
+# ### BUILD MAIN IMAGE START ###
+FROM alpine
+
+WORKDIR /clickers
+
+RUN apk add --no-cache --update bash git python3 sed util-linux-misc
+
+COPY --from=builder ./clickers .
 COPY start.sh .
 
-VOLUME ["/config"]
-VOLUME ["/HamsterKombatBot/sessions"]
-VOLUME ["/MemeFiBot/sessions"]
-VOLUME ["/PocketFiBot/sessions"]
-VOLUME ["/TapSwapBot/sessions"]
-VOLUME ["/WormSlapBot/sessions"]
-ENTRYPOINT ["/bin/bash", "./start.sh"]
+VOLUME ["/clickers/config"]
+VOLUME ["/clickers/HamsterKombatBot/sessions"]
+VOLUME ["/clickers/MemeFiBot/sessions"]
+VOLUME ["/clickers/PocketFiBot/sessions"]
+VOLUME ["/clickers/TapSwapBot/sessions"]
+VOLUME ["/clickers/WormSlapBot/sessions"]
+
+CMD ["./start.sh"]
 ### BUILD MAIN IMAGE end ###

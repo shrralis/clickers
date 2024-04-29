@@ -21,7 +21,7 @@ function start() {
     cd "${bot_subpath}"
 
     local custom_env_dir="${root_path}/config/${bot_subpath}"
-    prefixed_output "echo 'Looking for the .env file in [${custom_env_dir=}]...'" "${bot_subpath}"
+    prefixed_output "echo \"Looking for the .env file in [${custom_env_dir=}]...\"" "${bot_subpath}"
     local custom_env_filepath="${custom_env_dir}/.env"
     if [ ! -f "${custom_env_filepath}" ]; then
         prefixed_output 'echo "Custom .env file is not found!"' "${bot_subpath}"
@@ -36,12 +36,9 @@ function start() {
         cp -f "${custom_env_filepath}" .env
     fi
 
-    local install_venv='python3 -m venv venv'
-    local activate_venv='source venv/bin/activate'
-    local install_requirements='pip3 install -r requirements.txt'
-    local run_bot='python3 main.py -a 2'
-    #prefixed_output "${install_venv} && ${activate_venv} && ${install_requirements} && ${run_bot}" "${bot_subpath}"
-    prefixed_output "${install_requirements} && ${run_bot}" "${bot_subpath}"
+    . venv/bin/activate
+    pip3 install -qr requirements.txt
+    prefixed_output 'python3 main.py -a 2' "${bot_subpath}"
 }
 
 update HamsterKombatBot
