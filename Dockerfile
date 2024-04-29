@@ -1,7 +1,7 @@
 # ### BUILD MAIN IMAGE START ###
 FROM alpine
 
-RUN apk add --no-cache --update bash git python3 sed util-linux-misc
+RUN apk add --no-cache --update bash gcc git python3 sed util-linux-misc
 
 SHELL ["/bin/bash", "-c"]
 
