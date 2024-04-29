@@ -3,6 +3,8 @@ FROM alpine
 
 RUN apk add --no-cache --update bash git python3 sed util-linux-misc
 
+SHELL ["/bin/bash", "-c"]
+
 # ## HamsterKombatBot setup ##
 RUN git clone https://github.com/shamhi/HamsterKombatBot.git
 RUN cd HamsterKombatBot && python3 -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
