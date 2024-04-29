@@ -40,7 +40,8 @@ function start() {
     local activate_venv='source venv/bin/activate'
     local install_requirements='pip3 install -r requirements.txt'
     local run_bot='python3 main.py -a 2'
-    prefixed_output "${install_venv} && ${activate_venv} && ${install_requirements} && ${run_bot}" "${bot_subpath}"
+    #prefixed_output "${install_venv} && ${activate_venv} && ${install_requirements} && ${run_bot}" "${bot_subpath}"
+    prefixed_output "${install_requirements} && ${run_bot}" "${bot_subpath}"
 }
 
 update HamsterKombatBot

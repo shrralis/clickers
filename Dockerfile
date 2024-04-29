@@ -7,23 +7,28 @@ SHELL ["/bin/bash", "-c"]
 
 # ## HamsterKombatBot setup ##
 RUN git clone https://github.com/shamhi/HamsterKombatBot.git
-RUN cd HamsterKombatBot && python3 -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
+#RUN cd HamsterKombatBot && python3 -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
+RUN cd HamsterKombatBot && pip3 install -r requirements.txt
 
 # ## MemeFiBot setup ##
 RUN git clone https://github.com/shamhi/MemeFiBot.git
-RUN cd MemeFiBot && python3 -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
+#RUN cd MemeFiBot && python3 -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
+RUN cd MemeFiBot && pip3 install -r requirements.txt
 
 # ## PocketFiBot setup ##
 RUN git clone https://github.com/shamhi/PocketFiBot.git
-RUN cd PocketFiBot && python3 -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
+#RUN cd PocketFiBot && python3 -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
+RUN cd PocketFiBot && pip3 install -r requirements.txt
 
 # ## TapSwapBot setup ##
 RUN git clone https://github.com/shamhi/TapSwapBot.git
-RUN cd TapSwapBot && python3 -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
+#RUN cd TapSwapBot && python3 -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
+RUN cd TapSwapBot && pip3 install -r requirements.txt
 
 # ## WormSlapBot setup ##
 RUN git clone https://github.com/shamhi/WormSlapBot.git
-RUN cd WormSlapBot && python3 -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
+#RUN cd WormSlapBot && python3 -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
+RUN cd WormSlapBot && pip3 install -r requirements.txt
 
 COPY start.sh .
 
