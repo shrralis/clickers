@@ -6,8 +6,13 @@ function update() {
     local bot_subpath="${1}"
     cd "${bot_subpath}"
     echo "Updating [${bot_subpath}]..."
+
     git fetch
     git pull
+
+    . venv/bin/activate
+    pip3 install -qr requirements.txt
+
     echo "Updated!"
     cd "${root_path}"
 }
@@ -37,7 +42,6 @@ function start() {
     fi
 
     . venv/bin/activate
-    pip3 install -qr requirements.txt
     prefixed_output 'python3 main.py -a 2' "${bot_subpath}"
 }
 
