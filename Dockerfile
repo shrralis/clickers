@@ -35,7 +35,7 @@ RUN cd WormSlapBot && python3 -m venv venv && . venv/bin/activate && pip3 instal
 
 
 # ### BUILD MAIN IMAGE START ###
-FROM alpine
+FROM --platform=linux/arm64 alpine
 
 WORKDIR /clickers
 
