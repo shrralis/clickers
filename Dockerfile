@@ -1,6 +1,5 @@
 ### BUILD CLICKERS MULTIARCH START ###
-#FROM --platform=$BUILDPLATFORM alpine AS builder
-FROM --platform=linux/arm64 alpine AS builder
+FROM --platform=$BUILDPLATFORM alpine AS builder
 
 WORKDIR /clickers
 
