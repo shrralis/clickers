@@ -7,7 +7,7 @@ RUN apk add --no-cache --update bash git python3
 
 ARG TARGETARCH
 ARG TARGETVARIANT
-RUN if ["$TARGETARCH" == 'arm64'] && [-z "$TARGETVARIANT"]; then apk add build-base python3-dev; fi
+RUN if [ "$TARGETARCH" == 'arm64' ] && [ -z "$TARGETVARIANT" ]; then apk add build-base python3-dev; fi
 
 SHELL ["/bin/bash", "-c"]
 
