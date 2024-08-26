@@ -39,7 +39,7 @@ jobs:
 
       - name: Check env
         run: |
-          echo ${{ env.REG_REPO }}
+          echo ${{ env.REG_REPO }} && env
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
