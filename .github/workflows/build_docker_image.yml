@@ -2,7 +2,7 @@ name: Build Clickers Docker image
 
 on:
   release:
-    types: [published,push]
+    types: [published,update]
 
 jobs:
   docker:
